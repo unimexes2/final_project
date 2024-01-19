@@ -180,7 +180,6 @@ class PrepareOrder:
             m= cashier.dni
             if str(cashier.dni) == dni:
                 return cashier
-        print("Cashier not found.")
         return None
 
     def search_customer_by_dni(self, dni):
@@ -263,30 +262,30 @@ class PrepareOrder:
         clear_display()
 
     def run_order_creation(self):
+      clear_display()
+      while True : 
         dni_cashier = input("Enter the DNI of the cashier: ")
         cashier = self.search_cashier_by_dni(dni_cashier)
         if not cashier:
             print("Cashier not found.")
-            return
-
-        dni_customer = input("Enter the DNI of the customer: ")
-        customer = self.search_customer_by_dni(dni_customer)
-        if not customer:
+            
+        else:  
+         dni_customer = input("Enter the DNI of the customer: ")
+         customer = self.search_customer_by_dni(dni_customer)
+         if not customer:
             print("Customer not found.")
-            return
+            
+         if customer and cashier:
+                break
+      order = Order(cashier, customer)
+      print(f"\nOrder created for cashier {cashier.name} and customer {customer.name}.\n")
 
-        order = Order(cashier, customer)
-        print(f"\nOrder created for cashier {cashier.name} and customer {customer.name}.\n")
+      self.show_available_products()
+      selected_products = self.choose_products()
 
-        self.show_available_products()
-        selected_products = self.choose_products()
-
-        for product in selected_products:
+      for product in selected_products:
             order.add(product)
 
-        total_amount = order.calculateTotal()
-        clear_display()
-       
-
-
-        order.show()
+      total_amount = order.calculateTotal()
+      clear_display()
+      order.show()
