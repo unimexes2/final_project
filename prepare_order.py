@@ -107,6 +107,7 @@ from users import *
 from products import *
 from orders import *    
 import os
+import time
 
 def clear_display():
   os.system("cls")
@@ -198,8 +199,8 @@ class PrepareOrder:
            
 
     def choose_products(self):
+     
      chosen_products = []
-
      hamburgers=self.hamburgers
      sodas=self.sodas
      meals=self.meals 
@@ -210,7 +211,7 @@ class PrepareOrder:
            for product in products:
              if product.id == product_id:
               return product
-             return None 
+            
     
     ## El corazón de mi app
      while True:
@@ -223,43 +224,47 @@ class PrepareOrder:
               for hamburger in self.hamburgers:
                print(f"ID: {hamburger.id}, Name: {hamburger.name}, Price: {hamburger.price} euros")
               product_id = input("Enter the ID of the product you want to add: ").upper()
-              index = find_product_by_id(hamburgers, product_id) 
-              if index is None:
+              item = find_product_by_id(self.hamburgers, product_id) 
+              
+              if item is None:
                       print("Wrong ID")
               else:
-               chosen_products.append(index)  
+               chosen_products.append(item)  
       
         elif product_type.lower()=='happy meal':
               for meal in self.meals:
                print(f"ID: {meal.id}, Name: {meal.name}, Price: {meal.price} euros")
               product_id = input("Enter the ID of the product you want to add: ").upper()
-              index = find_product_by_id(meals, product_id) 
-              if index is None:
+              item = find_product_by_id(self.meals, product_id) 
+              if item is None:
                       print("Wrong ID")
               else:
-                chosen_products.append(index)  
+                chosen_products.append(item)  
         
         elif product_type.lower()=='soda':
               for soda in self.sodas:
                print(f"ID: {soda.id}, Name: {soda.name}, Price: {soda.price} euros") 
               product_id = input("Enter the ID of the product you want to add: ").upper()
-              index = find_product_by_id(sodas, product_id) 
-              if index is None:
+              item = find_product_by_id(self.sodas, product_id) 
+              if item is None:
                       print("Wrong ID")
               else:
-               chosen_products.append(index)  
+               chosen_products.append(item)  
        
         
         elif product_type.lower()=='drink':
               for drink in self.drinks:
                print(f"ID: {drink.id}, Name: {drink.name}, Price: {drink.price} euros")
               product_id = input("Enter the ID of the product you want to add: ").upper()
-              index = find_product_by_id(drinks, product_id) 
-              if index is None:
+              item = find_product_by_id(self.drinks, product_id) 
+              if item is None:
                       print("Wrong ID")
+                      time.sleep(2)
               else:
-               chosen_products.append(index)       
+            
+               chosen_products.append(item)       
         clear_display()
+
 
     def run_order_creation(self):
       clear_display()

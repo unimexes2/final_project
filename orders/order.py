@@ -18,10 +18,7 @@ class Order:
          return total_amount
 
     def show(self):
-        
-        
-        
-        
+                    
         print(f"Order details:")
         print(f"Cashier: {self.cashier.name}, Customer: {self.customer.name}")
         if None in self.products :
@@ -32,4 +29,5 @@ class Order:
         print("Products:")
         for product in self.products:
             print(f"  - {product.name} ({product.type()}), Price: {product.price} euros")
+            print(f"    package is in :{product.foodPackage().pack()}, With material :{product.foodPackage().material()}")
         print(f"Total amount: {self.calculateTotal()} euros")
