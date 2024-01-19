@@ -1,29 +1,10 @@
 from util import *
 from users import *
 from products import *
-     
+from orders import *     
         
-       
-class Order:
-    def __init__(self, cashier, customer):
-        self.cashier = cashier
-        self.customer = customer
-        self.products = []
+     
 
-    def add(self, product):
-        self.products.append(product)
-
-    def calculateTotal(self):
-        total_amount = sum(product.price for product in self.products)
-        return total_amount
-
-    def show(self):
-        print(f"Order details:")
-        print(f"Cashier: {self.cashier.name}, Customer: {self.customer.name}")
-        print("Products:")
-        for product in self.products:
-            print(f"  - {product.name} ({product.type()}), Price: {product.price} euros")
-        print(f"Total amount: {self.calculateTotal()} euros")
 
 
 
@@ -196,7 +177,7 @@ class PrepareOrder:
         total_amount = order.calculateTotal()
         print(f"\nTotal amount for the order: {total_amount} euros")
 
-        print("\nOrder details:")
+
         order.show()
 
 

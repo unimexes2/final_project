@@ -1,24 +1,35 @@
-from users import *
-from products import *
+
 
 class Order:
-    def __init__(self, cashier: Cashier, customer: Customer):
+    def __init__(self, cashier, customer):
         self.cashier = cashier
         self.customer = customer
         self.products = []
 
-    def add(self, product: Product):
+    def add(self, product):
         self.products.append(product)
-        print(f"Product '{product.name}' added to the order.")
 
-    def calculateTotal(self) -> float:
-        total_price = sum(product.get_price() for product in self.products)
-        return total_price
+    def calculateTotal(self):
+        if None in self.products :
+           print("The product list is empty")
+           return
+        else :
+         total_amount = sum(product.price for product in self.products)
+         return total_amount
 
     def show(self):
-        print("Hello: " + self.customer.describe())
-        print("Was attended by: " + self.cashier.describe())
-        print("Order Details:")
-        for i, product in enumerate(self.products, 1):
-            print(f"{i}. {product.describe()} - Price: {product.get_price()} euros")
-        print(f"Total price: {self.calculateTotal()} euros")
+        
+        
+        
+        
+        print(f"Order details:")
+        print(f"Cashier: {self.cashier.name}, Customer: {self.customer.name}")
+        if None in self.products :
+           print("........ending.")
+           return
+        
+            
+        print("Products:")
+        for product in self.products:
+            print(f"  - {product.name} ({product.type()}), Price: {product.price} euros")
+        print(f"Total amount: {self.calculateTotal()} euros")
